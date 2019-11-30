@@ -1,0 +1,43 @@
+server:
+    port: 15451
+
+spring:
+    http:
+        multipart:
+            enabled: false
+            location: /Users/young/Desktop/
+
+    servlet:
+        multipart:
+            max-file-size: -1
+            max-request-size: -1
+
+    mvc:
+        static-path-pattern: /**
+    resources:
+        static-locations: classpath:/static/, file:${spring.http.multipart.location}
+
+
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        generate-ddl: false
+        show-sql: true
+        hibernate:
+            ddl-auto: none
+        properties:
+            hibernate:
+                temp:
+                    use_jdbc_metadata_defaults: false
+
+
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:15432/postgres
+        username: young
+        password: 123456
+
+
+    freemarker:
+        suffix: .html
+        settings:
+            auto_import: spring.ftl as s

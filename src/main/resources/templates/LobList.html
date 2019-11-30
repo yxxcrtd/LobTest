@@ -1,0 +1,30 @@
+<script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+
+<table border="1">
+    <thead>
+        <th>id</th>
+        <th>Clob</th>
+        <th>Blog</th>
+    </thead>
+
+    <tbody>
+        <div><a href="add">添加</a></div><br/>
+
+        <#if (list?? && 0 < list?size)>
+            <#list list as l>
+                <tr>
+                    <td>${l.id}</td>
+                    <td>${l.clob}</td>
+                    <td id="bid${l.id}"></td>
+                    <script>
+                        $(function() {
+                            $.get("findById/" + ${l.id}, function(data) {
+                                $("#bid" + ${l.id}).html("<img src='data:image/jpeg;base64," + data.data + "' width='200' />");
+                            });
+                        });
+                    </script>
+                </tr>
+            </#list>
+        </#if>
+    </tbody>
+</table>
